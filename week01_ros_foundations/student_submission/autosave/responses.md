@@ -1,0 +1,110 @@
+# Week 1: Discovering a Robot Through ROS 2
+
+## Student
+
+- Name: Alireza Aghayari
+- Email: alireza.aghayari77@login.cuny.edu
+
+## final.architecture_evidence
+
+My node is reactive because it uses the current LiDAR reading to decide whether to move or stop. A hybrid system would also need a planning layer that thinks ahead and chooses a longer-term path.
+
+## final.course_reflection
+
+This activity made me think more about how robotics combines programming, engineering, and decision-making. I was especially interested in seeing how something that seems simple, like making a robot move forward and stop near an obstacle, actually depends on many different parts working together. The robot has to receive sensor data, process it correctly, communicate between ROS 2 nodes, and make a safe decision at the right time.
+
+One thing that stood out to me was how important safety is in robotics. The LiDAR data could be missing or invalid, and the system had to decide what to do in those situations. I liked the idea that when the system is uncertain, stopping the robot is often safer than assuming everything is fine. It showed me that good robotics programming is not only about making the robot complete a task, but also about thinking about what could go wrong.
+
+This activity also made me more interested in working with ROS 2 and robotics in the future. At first, the setup and different terminals were a little challenging, but once I started seeing how the nodes, topics, sensors, and commands connected, the system made more sense. I enjoyed seeing the connection between the code I wrote and the behavior of the simulated robot.
+
+I also think technical work should consider human and ethical issues. A robot may eventually operate around people, so reliability and safety are very important. Developers need to think about how failures could affect users, not just whether the code works under ideal conditions. Overall, this activity helped me understand both the technical complexity of robotics and the responsibility involved in designing safe systems.
+
+## final.hardware_next
+
+Before using this on real hardware, I would test more obstacle distances, missing sensor data, delays, different speeds, and emergency stopping. I would also make sure the robot always stops safely when something goes wrong.
+
+## final.middleware_debugging
+
+The ROS graph can show which nodes publish and subscribe to each topic. If a command does not reach the robot, I can check /student_cmd_vel, the command guard, and /cmd_vel to see where the communication stops.
+
+## final.system_synthesis
+
+Robotics software is difficult because a robot depends on sensor data, and that data can sometimes be noisy, delayed, missing, or invalid. In this lab, I saw that the robot should not always trust every sensor value. For example, the LiDAR scan could contain values like inf or nan. My front_distance() function ignored those invalid values and used the nearest valid distance in front of the robot. If there was no valid distance, the robot stopped for safety. This showed me that even a simple movement decision can become difficult when the robot does not have perfect information.
+
+The behavior I implemented was a reactive architecture. The robot looked at the current LiDAR reading and decided whether to move forward or stop. This is simple and fast because the robot reacts immediately to what it senses. The disadvantage is that it does not make a long-term plan. It only reacts to the current situation. Because of this, reactive control works well for simple obstacle safety, but more complex navigation would need planning and other decision-making methods.
+
+ROS 2 connected different parts of the system. The /ros_gz_bridge connected Gazebo with ROS 2. The /course_cmd_vel_guard checked driving commands before they reached the robot. The /rviz2 node showed robot and sensor information, and the /course_evidence_collector recorded information for the lab. These components communicated through topics such as /scan, /student_cmd_vel, and /cmd_vel. The LiDAR data came through /scan, proposed movement commands were sent through /student_cmd_vel, and approved commands were sent through /cmd_vel.
+
+Timing was also important for safety. If commands stop arriving, the robot should not keep moving forever, so the system uses a timeout to stop it. Invalid or missing LiDAR data also causes the robot to stop instead of assuming the path is safe. The command guard is another safety layer because it checks commands before they reach the robot. It can limit unsafe speeds and make sure only approved commands are sent. Overall, this lab showed me how sensing, communication, timing, and safety checks all work together in a ROS 2 robotics system.
+
+## final.timing_evidence
+
+The most important result was that missing or invalid sensor data caused the robot to stop. This showed me that stopping is safer than assuming the path is clear.
+
+## mission_1.command_path_explanation
+
+A proposed command is transmitted via /student_cmd_vel. The guard checks whether the command is safe. Then the approved command is published on /cmd_vel so it can reach the robot.
+
+## mission_1.graph_explanation
+
+A ROS 2 graph shows how nodes communicate with each other through topics. For example, the course_cmd_vel_guard node communicates using the /cmd_vel topic.
+
+## mission_1.guided_checks
+
+{'bridge_info': True, 'command_topics': True, 'guard_info': True, 'node_list': True, 'scan_info': True, 'scan_message': True}
+
+## mission_1.scan_observation
+
+I found the ranges field, which represents LiDAR distance measurements around the robot in meters.
+
+## mission_1.tools_explanation
+
+Gazebo is responsible for simulating the robot and its environment, while RViz is responsible for displaying ROS 2 information so the user can visualize what the robot is sensing and doing.
+
+## mission_2.measurement_explanation
+
+The traveled path is the full distance the robot moved. The start-to-end distance is only the straight distance from the start to the finish.
+
+## mission_2.modified_settings
+
+{'linear_x': 0.12, 'angular_z': 0.6, 'duration': 4.0}
+
+## mission_2.motion_comparison
+
+My prediction was close to what happened. The robot moved about the amount I expected based on the measurements in the table.
+
+## mission_2.prediction_locks
+
+{'straight': '2026-09-12T01:30:53.949146+00:00', 'rotation': '2026-09-12T01:32:59.813698+00:00', 'curve': '2026-09-12T01:34:22.974465+00:00', 'curve_modified': '2026-09-12T01:35:56.651673+00:00'}
+
+## mission_2.predictions
+
+{'straight': '0.45 meters from its starting point.', 'rotation': 'stay the same while its direction will turn to the left.', 'curve': 'right hand curved path because the robot is moving forward while the turning speed is negative, which makes it turn right.', 'curve_modified': 'This curve should be tighter and turn to the left because the turning speed is positive and relatively large compared with the forward speed.'}
+
+## mission_2.safety_explanation
+
+The command guard checks if the driving command is safe. The final zero command stops the robot when the movement is finished. The timeout is needed if commands suddenly stop, so the robot will stop automatically.
+
+## mission_3.data_to_command
+
+The first function looks at the LiDAR readings in front of the robot and finds the closest valid distance. The second function uses that distance to decide whether the robot should move forward or stop.
+
+## mission_3.missing_data_safety
+
+It stops because missing sensor data could be unsafe. If the robot cannot tell whether something is in front of it, stopping is the safer choice.
+
+## mission_3.system_layers
+
+The decision functions decide if the robot should move or stop. The ROS node gets the LiDAR data and uses those functions. The command guard checks the movement command before it is sent to the robot.
+
+## part_1.activity
+
+{'sensor': {'normal': True, 'changed': True}, 'timing': {'normal': True, 'changed': True}, 'hardware': {'normal': True, 'changed': True}}
+
+## part_2.activity
+
+{'reactive': {'normal': True, 'changed': True}, 'behavior': {'normal': True, 'changed': True}, 'deliberative': {'normal': True, 'changed': True}, 'hybrid': {'normal': True, 'changed': True}, 'safety': {'normal': True, 'changed': True}}
+
+## part_3.activity
+
+{'middleware': {'single': True, 'multiple': True}, 'communication': {'topic': True, 'service': True}, 'failure': {'healthy': True, 'sensor': True, 'type': True, 'visualization': True}, 'inspection': {'nodes': True, 'node_info': True, 'topics': True, 'topic_info': True, 'echo': True, 'services': True, 'broken': True}}

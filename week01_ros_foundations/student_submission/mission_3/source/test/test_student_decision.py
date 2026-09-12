@@ -31,7 +31,8 @@ class DecisionTests(unittest.TestCase):
     def test_forward_output_is_not_amplified(self) -> None:
         self.assertLessEqual(decide_velocity(2.0, 0.5, 0.08), 0.08)
 
- 
+    def test_negative_forward_speed_stops(self) -> None:
+        self.assertEqual(decide_velocity(2.0, 0.5 ,-0.88), 0.0)
 if __name__ == "__main__":
     unittest.main()
 
