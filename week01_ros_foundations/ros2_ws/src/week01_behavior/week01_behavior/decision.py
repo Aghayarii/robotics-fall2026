@@ -1,12 +1,4 @@
-"""Pure decision helpers for Mission 3.
-
-Complete both functions. Keeping this logic independent of ROS makes it possible
-to test safety decisions before running the simulated robot.
-"""
-
-from __future__ import annotations
-
-from collections.abc import Sequence
+import math
 
 
 def front_distance(
@@ -20,7 +12,19 @@ def front_distance(
     Return ``None`` when the sector has no valid reading. Angles are measured in
     radians and the front direction is zero radians.
     """
-    raise NotImplementedError("Mission 3: select and validate the front-sector readings")
+    valid_distances = []
+
+    for i, distance in enumerate(ranges):
+        angle = angle_min + i * angle_increment
+
+        if abs(angle) <= half_width_radians:
+            if math.isfinite(distance) and distance > 0:
+                valid_distances.append(distance)
+
+    if not valid_distances:
+        return None
+
+    return min(valid_distances)
 
 
 def decide_velocity(
@@ -29,5 +33,11 @@ def decide_velocity(
     forward_speed: float,
 ) -> float:
     """Return a bounded forward velocity; missing data must produce a stop."""
-    raise NotImplementedError("Mission 3: implement the move/stop safety rule")
 
+    if distance is None:
+        return 0.0
+
+    if distance <= stop_distance:
+        return 0.0
+
+    return max(0.0, forward_speed)
