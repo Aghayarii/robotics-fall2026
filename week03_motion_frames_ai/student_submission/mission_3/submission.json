@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "lab_id": "week03_motion_frames_ai",
+  "mission_id": "mission_3",
+  "saved_at": "2026-09-25T23:03:49.291390+00:00",
+  "evidence": {
+    "evidence_id": "40d151c023f47ac6",
+    "ai_evaluation": {
+      "schema_version": 1,
+      "captured_at": "2026-09-25T23:01:53.175733+00:00",
+      "pattern": "rounded_rectangle",
+      "unit_tests_passed": true,
+      "test_count": 10,
+      "unit_test_output": "test_angular_limits (test_pattern.PatternTests.test_angular_limits) ... ok\ntest_linear_limits (test_pattern.PatternTests.test_linear_limits) ... ok\ntest_nonempty (test_pattern.PatternTests.test_nonempty) ... ok\ntest_pattern_contains_motion (test_pattern.PatternTests.test_pattern_contains_motion) ... ok\ntest_pattern_contains_turning (test_pattern.PatternTests.test_pattern_contains_turning) ... ok\ntest_positive_durations (test_pattern.PatternTests.test_positive_durations) ... ok\ntest_quarter_turn_arcs (test_pattern.PatternTests.test_quarter_turn_arcs) ... ok\ntest_rounded_rectangle_segment_count (test_pattern.PatternTests.test_rounded_rectangle_segment_count) ... ok\ntest_rounded_rectangle_segment_order (test_pattern.PatternTests.test_rounded_rectangle_segment_order) ... ok\ntest_segment_types (test_pattern.PatternTests.test_segment_types) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.001s\n\nOK\n",
+      "commands_bounded": true,
+      "shape_check_passed": true,
+      "predicted_endpoint": {
+        "x": -2.220446049250313e-16,
+        "y": -2.220446049250313e-16,
+        "theta": -2.220446049250313e-16
+      },
+      "integration_passed": true,
+      "final_stop_verified": true,
+      "source_sha256": "a995aed7b8d0f5984fae327a7453496338d0b93aa94b605f9c459e204c0960ce",
+      "source_differs_from_original": true,
+      "segment_count": 8
+    },
+    "ai_lock": {
+      "locked_at": "2026-09-25T21:35:07.333068+00:00",
+      "pattern": "rounded_rectangle",
+      "specification_sha256": "2de1a3d7ce0eb891737433be0fef110065317facf820766a9813c1fa76974869",
+      "prompt_sha256": "4e43066896848d8cf1d77a20b5d8cc5ec7b077308a25ffe7d35d3153405865bb",
+      "output_sha256": "fedf6f5b4feb4556e47b1c6b30d1e14c0fe55f5624e9918a0c10ea7808a0c38c",
+      "integrity_valid": true
+    },
+    "check": [
+      {
+        "id": "original",
+        "label": "Original prompt and AI output preserved",
+        "passed": true,
+        "actual": "2026-09-25T21:35:07.333068+00:00",
+        "expected": "immutable record"
+      },
+      {
+        "id": "source",
+        "label": "Final source and tests present",
+        "passed": true,
+        "actual": true,
+        "expected": "true"
+      },
+      {
+        "id": "pattern",
+        "label": "Assigned pattern implemented",
+        "passed": true,
+        "actual": "rounded_rectangle",
+        "expected": "rounded_rectangle"
+      },
+      {
+        "id": "tests",
+        "label": "Meaningful automated tests pass",
+        "passed": true,
+        "actual": 10,
+        "expected": ">= 6 passing"
+      },
+      {
+        "id": "safety",
+        "label": "Commands bounded and final stop verified",
+        "passed": true,
+        "actual": true,
+        "expected": "true"
+      },
+      {
+        "id": "modified",
+        "label": "Final source differs from original output",
+        "passed": true,
+        "actual": true,
+        "expected": "true"
+      },
+      {
+        "id": "reflection",
+        "label": "AI review and correctness argument completed",
+        "passed": true,
+        "actual": "complete",
+        "expected": "six substantive responses"
+      }
+    ]
+  }
+}

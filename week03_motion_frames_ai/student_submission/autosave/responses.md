@@ -1,0 +1,191 @@
+# Week 3: Motion, Frames, and AI-Assisted ROS Development
+
+## Student
+
+- Course Id: CSCI 39536
+- Email: alireza.aghayari77@cuny.login.edu
+- Name: Alireza Aghayari
+
+## concept.arc
+
+Because the robot is moving forward and turning at the same time, which makes it move in a curved path.
+
+
+## concept.model_limits
+
+It assumes the wheels don't slip, but in real life they can slip and make the robot move differently than expected.
+
+## concept.velocity_pose
+
+Because we need to know how long the robot is moving at that velocity to figure out how far it will move.
+
+## final.ai_judgment
+
+I reviewed the AI-generated code instead of assuming it was correct. I identified problems, modified the code, created and improved tests, fixed syntax and indentation errors, and repeatedly ran the tests and evaluation script. I used the test results to verify that the final rounded rectangle implementation met the requirements.
+
+## final.course_reflection
+
+This activity made me think more about how robotics combines programming with real physical behavior. One thing that stood out to me was that code can look correct but still needs to be tested before we can trust what the robot will actually do. Working with motion, coordinate frames, and ROS helped me understand why small assumptions can create larger problems in robot behavior.
+I also found the AI-assisted part interesting. AI was useful for generating ideas and helping with code, but this activity showed me that its output cannot just be accepted without checking it. I had to review the code, identify problems, modify it, and run tests to see whether it actually met the requirements. Debugging the rounded rectangle pattern was sometimes frustrating, but seeing the tests eventually pass made the process more meaningful. Overall, this activity increased my interest in working with ROS and gave me more confidence in debugging and testing robotics programs.
+
+## final.frame_insight
+
+The most likely mistake is using the correct coordinates but interpreting them in the wrong frame. For example, a point could be correct in one frame but incorrect if it is treated as being relative to the robot instead of the world.
+
+## final.model_surprise
+
+What surprised me most was that even when the predicted motion looked correct, the observed motion could still be different because of timing, coordinate frames, or other implementation details. This showed me why simulation and testing are important.
+
+## final.synthesis
+
+Motion models predict how the robot should move based on its velocity and time. Coordinate frames describe where the robot or an object is located and how that position should be interpreted. Software tests provide evidence that the code follows specific requirements, such as correct segment order and safe velocity limits. Together, they help compare what the robot should do with what the program actually commands it to do.
+
+## mission_1.error_source
+
+A modeling or timing error happens when the robot does not move exactly as the motion model predicts, such as moving for a slightly different amount of time. A localization or measurement error happens when the robot moves correctly, but its position or orientation is measured incorrectly.
+
+## mission_1.largest_error
+
+The arc sequence had the largest discrepancy, with a position error of 0.538 m.
+
+## mission_1.model_vs_observation
+
+The observed motion matched the model pretty closely, but there were some small differences in the final position and angle. This could be caused by things like wheel slipping, simulation timing, or odometry error.
+
+## mission_1.predictions
+
+{'arc': {'x': 0.375, 'y': 0.386, 'theta': 1.6}, 'straight': {'x': 0.45, 'y': 0.0, 'theta': 0.0}, 'turn_then_drive': {'x': 0.0, 'y': 0.3, 'theta': 1.57}}
+
+## mission_1.predictions_locked_at
+
+2026-09-25T20:37:21.150845+00:00
+
+## mission_1.twice_distance
+
+I would predict that the robot would travel twice as far, so it would move 0.90 m straight while keeping the same heading.
+
+## mission_2.diagnostics
+
+{'typo': 'Unknown frame name', 'wrong_source': 'Point interpreted in the wrong source frame', 'stale': 'Transform unavailable at the requested time'}
+
+## mission_2.fixed_meaning
+
+odom stays fixed to the odometry reference, base_link is fixed to the robot body, and base_scan is fixed to the sensor on the robot.
+
+## mission_2.map_absent
+
+There may be no map frame because the lab is using odometry and is not running a mapping or localization system.
+
+## mission_2.moving_coordinates
+
+The robot's position and heading change relative to the odom frame. The sensor stays in the same position relative to base_link.
+
+## mission_2.point_answers
+
+{'sensor_point_in_base': {'x': 0.97, 'y': 0.0}, 'sensor_point_in_odom': {'x': 0.54, 'y': 5.52}}
+
+## mission_2.relationships
+
+{'odom_to_base': 'odom → base_link', 'base_to_sensor': 'base_link → base_scan', 'map_role': 'Global frame corrected by localization or SLAM'}
+
+## mission_2.sensor_offset
+
+The software needs to know where the sensor is mounted so it can correctly transform sensor measurements into the robot's frame or another frame.
+
+## mission_3.ai_disclosure
+
+I used ChatGPT to help review the AI-generated ROS code, understand errors, and develop and debug the tests. I did not assume the suggested code was correct. I reviewed the code, ran the unit tests and evaluation script, fixed errors, and checked the results myself. I am responsible for the final code, tests, and submitted work.
+
+## mission_3.ai_locked_at
+
+2026-09-25T21:35:07.333068+00:00
+
+## mission_3.assumptions
+
+The AI assumed that timing alone would make the robot follow the correct path and that the commanded velocities would match the robot's actual motion. It also assumed the robot starts from the expected pose and that the same timing will always produce a 90-degree turn.
+
+## mission_3.modifications
+
+I changed the AI-generated code so it correctly implements my assigned rounded rectangle pattern. I made it alternate between straight segments and quarter-turn arcs and kept the linear and angular velocities within the required limits. I also added and improved tests to check the number and order of segments, velocity limits, positive durations, and quarter-turn behavior.
+
+## mission_3.original_output
+
+import math
+import time
+
+LINEAR_SPEED = 0.15
+ANGULAR_SPEED = 0.5
+STRAIGHT_TIME = 2.0
+TURN_TIME = (math.pi / 2) / ANGULAR_SPEED
+
+
+def rounded_rectangle_pattern():
+    commands = []
+
+    # Four sides with a rounded turn after each side
+    for _ in range(4):
+        commands.append({
+            "linear_x": LINEAR_SPEED,
+            "angular_z": 0.0,
+            "duration": STRAIGHT_TIME
+        })
+
+        commands.append({
+            "linear_x": LINEAR_SPEED,
+            "angular_z": ANGULAR_SPEED,
+            "duration": TURN_TIME
+        })
+
+    # Stop the robot at the end
+    commands.append({
+        "linear_x": 0.0,
+        "angular_z": 0.0,
+        "duration": 0.0
+    })
+
+    return commands
+
+
+def test_pattern():
+    commands = rounded_rectangle_pattern()
+
+    # Check that the robot stops at the end
+    assert commands[-1]["linear_x"] == 0.0
+    assert commands[-1]["angular_z"] == 0.0
+
+    # Check velocity limits
+    for command in commands:
+        assert abs(command["linear_x"]) <= 0.2
+        assert abs(command["angular_z"]) <= 0.8
+
+    # Check that there are four straight sections
+    # and four rounded turns
+    assert len(commands) == 9
+
+
+if __name__ == "__main__":
+    pattern = rounded_rectangle_pattern()
+
+    for command in pattern:
+        print(command)
+        time.sleep(command["duration"])
+
+## mission_3.original_prompt
+
+Write Python code for a ROS 2 robot to drive a closed rounded rectangle using alternating straight segments and quarter-turn arcs. Use linear and angular velocity commands, keep the velocities within safe limits, and make sure the robot sends a zero velocity command at the end. Also include tests that check the motion pattern, velocity limits, geometry, and final stop behavior.
+
+## mission_3.problems
+
+The code does not use ROS 2 to actually publish velocity commands to the robot. It also does not handle interruptions or guarantee that the robot stops if something goes wrong. The tests only check basic velocity limits and the final stop, so they do not fully test the segment order, turn geometry, heading, or interruption behavior.
+
+## mission_3.remaining_limits
+
+The unit tests show that the generated commands and pattern are correct, but they do not prove that the robot will behave perfectly in every real environment. Simulation and real robot behavior can be affected by timing, odometry error, wheel slip, or interruptions. The final stop and integration behavior also need to be verified during the ROS/Gazebo run.
+
+## mission_3.specification
+
+The robot should drive in a closed rounded rectangle using alternating straight segments and quarter-turn arcs. The motion commands should use linear and angular velocity to control the robot. The robot should stay within the required velocity limits and use the ROS coordinate convention. Each straight segment should move the robot forward, and each arc should turn the robot 90 degrees while continuing to move forward. After completing the full rounded rectangle, the robot should return close to its starting pose and send a final zero velocity command to stop. Tests should check the pattern structure, velocity limits, quarter-turn arcs, and final stop behavior.
+
+## mission_3.test_argument
+
+The tests check that the pattern is not empty, contains the correct 8 segments, and alternates between straight motion and turning. The velocity tests make sure the commands stay within the allowed limits. The duration test makes sure every segment has a valid positive duration. The quarter-turn test checks that each arc produces about a 90-degree turn. Together, these tests rule out an empty pattern, incorrect segment order, unsafe speeds, invalid durations, and incorrect turns.

@@ -1,0 +1,59 @@
+import math
+import time
+
+LINEAR_SPEED = 0.15
+ANGULAR_SPEED = 0.5
+STRAIGHT_TIME = 2.0
+TURN_TIME = (math.pi / 2) / ANGULAR_SPEED
+
+
+def rounded_rectangle_pattern():
+    commands = []
+
+    # Four sides with a rounded turn after each side
+    for _ in range(4):
+        commands.append({
+            "linear_x": LINEAR_SPEED,
+            "angular_z": 0.0,
+            "duration": STRAIGHT_TIME
+        })
+
+        commands.append({
+            "linear_x": LINEAR_SPEED,
+            "angular_z": ANGULAR_SPEED,
+            "duration": TURN_TIME
+        })
+
+    # Stop the robot at the end
+    commands.append({
+        "linear_x": 0.0,
+        "angular_z": 0.0,
+        "duration": 0.0
+    })
+
+    return commands
+
+
+def test_pattern():
+    commands = rounded_rectangle_pattern()
+
+    # Check that the robot stops at the end
+    assert commands[-1]["linear_x"] == 0.0
+    assert commands[-1]["angular_z"] == 0.0
+
+    # Check velocity limits
+    for command in commands:
+        assert abs(command["linear_x"]) <= 0.2
+        assert abs(command["angular_z"]) <= 0.8
+
+    # Check that there are four straight sections
+    # and four rounded turns
+    assert len(commands) == 9
+
+
+if __name__ == "__main__":
+    pattern = rounded_rectangle_pattern()
+
+    for command in pattern:
+        print(command)
+        time.sleep(command["duration"])

@@ -1,0 +1,95 @@
+--- original_ai_output
++++ final_pattern.py
+@@ -1,59 +1,38 @@
++"""AI-assisted motion pattern implementation.
++
++Preserve the original AI response in Streamlit. Review it, then implement a safe
++version here. The node accepts only segments returned by ``build_pattern``.
++"""
++from __future__ import annotations
++from dataclasses import dataclass
+ import math
+-import time
+ 
+-LINEAR_SPEED = 0.15
+-ANGULAR_SPEED = 0.5
+-STRAIGHT_TIME = 2.0
+-TURN_TIME = (math.pi / 2) / ANGULAR_SPEED
++@dataclass(frozen=True)
++class Segment:
++    linear_x: float
++    angular_z: float
++    duration: float
+ 
++def build_pattern(pattern_name: str) -> list[Segment]:
++    """Return ordered, bounded motion segments for the assigned pattern.
+ 
+-def rounded_rectangle_pattern():
+-    commands = []
+-
+-    # Four sides with a rounded turn after each side
+-    for _ in range(4):
+-        commands.append({
+-            "linear_x": LINEAR_SPEED,
+-            "angular_z": 0.0,
+-            "duration": STRAIGHT_TIME
+-        })
+-
+-        commands.append({
+-            "linear_x": LINEAR_SPEED,
+-            "angular_z": ANGULAR_SPEED,
+-            "duration": TURN_TIME
+-        })
+-
+-    # Stop the robot at the end
+-    commands.append({
+-        "linear_x": 0.0,
+-        "angular_z": 0.0,
+-        "duration": 0.0
+-    })
+-
+-    return commands
+-
+-
+-def test_pattern():
+-    commands = rounded_rectangle_pattern()
+-
+-    # Check that the robot stops at the end
+-    assert commands[-1]["linear_x"] == 0.0
+-    assert commands[-1]["angular_z"] == 0.0
+-
+-    # Check velocity limits
+-    for command in commands:
+-        assert abs(command["linear_x"]) <= 0.2
+-        assert abs(command["angular_z"]) <= 0.8
+-
+-    # Check that there are four straight sections
+-    # and four rounded turns
+-    assert len(commands) == 9
+-
+-
+-if __name__ == "__main__":
+-    pattern = rounded_rectangle_pattern()
+-
+-    for command in pattern:
+-        print(command)
+-        time.sleep(command["duration"])+    Supported assignments are ``rounded_rectangle``, ``l_path``, and
++    ``alternating_arcs``. Do not include the final stop; the ROS wrapper always
++    publishes it and the evaluator verifies it.
++    """
++    if pattern_name == "rounded_rectangle":
++        straight_speed = 0.15
++        straight_duration = 2.0
++        arc_speed = 0.15
++        angular_speed = 0.15
++        arc_duration = (math.pi /2) / angular_speed
++        segments=[]
++        for _ in range(4):
++            segments.append(
++                Segment(straight_speed, 0.0, straight_duration)
++            )
++            segments.append(
++                Segment(arc_speed, angular_speed, arc_duration)
++            )
++        return segments
++    return []

@@ -1,0 +1,1 @@
+Write Python code for a ROS 2 robot to drive a closed rounded rectangle using alternating straight segments and quarter-turn arcs. Use linear and angular velocity commands, keep the velocities within safe limits, and make sure the robot sends a zero velocity command at the end. Also include tests that check the motion pattern, velocity limits, geometry, and final stop behavior.
