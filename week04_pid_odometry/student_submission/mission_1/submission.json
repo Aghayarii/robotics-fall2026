@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-02T17:15:04",
+  "mission_id": "mission_1",
+  "student": {
+    "name": "Alireza aghayari",
+    "student_id": "alireza.aghayari77@login.cuny.edu",
+    "section": "CSCI 39536"
+  },
+  "explanations": {
+    "joint_gains": "I adjusted the Kp, Ki, and Kd values for both joints until the arm could reach the targets and settle without too much oscillation. I increased Kp to make the joints respond more strongly, adjusted Kd to reduce overshoot, and changed Ki to help remove small remaining errors.",
+    "gravity_comp": "Gravity compensation helped the arm hold its position better, especially when the shoulder had to support the second link. Without it, the arm tended to sag more, but with it the joints stayed closer to the target and settled more smoothly."
+  },
+  "params": {
+    "activity": "two_link_arm_pid_tuning",
+    "kp1": 12,
+    "ki1": 1.4,
+    "kd1": 2.7,
+    "kp2": 16,
+    "ki2": 4,
+    "kd2": 2.5,
+    "gravityCompensation": false
+  },
+  "metrics": {
+    "completed": true,
+    "posesHeld": 3,
+    "posesRequired": 3
+  },
+  "checkin": {
+    "note": "I increased Kp and adjusted Ki and Kd because the arm was not settling smoothly. The changes helped it reach the target faster and reduced the overshoot and oscillation.",
+    "choice": "",
+    "complete": true
+  },
+  "csv_files": {},
+  "activity_gifs": [
+    "latest_arm_tuning.gif"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "saved_at": "2026-08-30T21:09:52",
+  "saved_at": "2026-10-02T17:36:43",
   "identity": {
     "name": "",
     "student_id": "",
@@ -9,6 +9,12 @@
   "checkins": {},
   "explanations": {},
   "activity_gifs": {
+    "mission_1": [
+      "latest_arm_tuning.gif"
+    ],
+    "mission_2": [
+      "latest_odometry_test.gif"
+    ],
     "mission_3": [
       "latest_drive.gif"
     ]
