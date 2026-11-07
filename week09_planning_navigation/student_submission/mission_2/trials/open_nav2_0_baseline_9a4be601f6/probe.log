@@ -1,0 +1,18 @@
+[INFO] [1794017803.714814024] [lab8_experiment_probe]: Waiting for Nav2 planning and path-following actions
+[INFO] [1794017805.280913337] [lab8_experiment_probe]: Waiting for map-frame robot position and lidar
+[INFO] [1794017809.400251611] [lab8_experiment_probe]: Waiting for planner_server lifecycle activation
+[INFO] [1794017810.521840607] [lab8_experiment_probe]: Waiting for controller_server lifecycle activation
+[INFO] [1794017810.531032466] [lab8_experiment_probe]: Waiting for velocity_smoother lifecycle activation
+[INFO] [1794017811.047410911] [lab8_experiment_probe]: Waiting for collision_monitor lifecycle activation
+[INFO] [1794017811.058583041] [lab8_experiment_probe]: Nav2 ready. Preparing the requested path
+[INFO] [1794017811.167064193] [lab8_experiment_probe]: Following path: 0 simulated seconds, estimated goal distance awaiting first execution checkpoint
+[INFO] [1794017816.173628064] [lab8_experiment_probe]: Following path: 5 simulated seconds, estimated goal distance 8.63 m
+[INFO] [1794017821.180606302] [lab8_experiment_probe]: Following path: 9 simulated seconds, estimated goal distance 7.48 m
+[INFO] [1794017826.187018767] [lab8_experiment_probe]: Following path: 13 simulated seconds, estimated goal distance 6.36 m
+[INFO] [1794017831.193013397] [lab8_experiment_probe]: Following path: 17 simulated seconds, estimated goal distance 5.34 m
+[INFO] [1794017836.202382025] [lab8_experiment_probe]: Following path: 21 simulated seconds, estimated goal distance 4.33 m
+[INFO] [1794017841.213533865] [lab8_experiment_probe]: Following path: 26 simulated seconds, estimated goal distance 2.95 m
+[INFO] [1794017846.224016697] [lab8_experiment_probe]: Following path: 30 simulated seconds, estimated goal distance 1.77 m
+[INFO] [1794017851.232647838] [lab8_experiment_probe]: Following path: 34 simulated seconds, estimated goal distance 0.57 m
+[INFO] [1794017854.487654243] [lab8_experiment_probe]: Finishing trial: succeeded
+{"status": "succeeded", "output": "/workspace/week09_planning_navigation/runtime/trials/open_nav2_0_baseline_9a4be601f6/result.json"}
