@@ -1,0 +1,14 @@
+{
+  "job_id": "8171323149e4440795d8b1ade4cb1ad3",
+  "kind": "language",
+  "case": "custom",
+  "prompt": "Go to the shelf and inspect the cup using your camera. Report what you can observe, and if you cannot tell whether it is empty or full, say you are unsure. Do not move the cup",
+  "phase": "custom",
+  "parent_id": null,
+  "requested_at": "2026-11-13T22:13:48.078249+00:00",
+  "comparison_ids": [
+    "78678a4dfe3542d29884a910930bd550",
+    "e80b120cf7fc4e71870646da08f37d65",
+    "7d597d339982434eb02ba297badbe6fb"
+  ]
+}

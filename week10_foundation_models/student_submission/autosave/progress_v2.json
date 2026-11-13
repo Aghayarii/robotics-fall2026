@@ -1,0 +1,74 @@
+{
+  "stage": "final_submission",
+  "responses": {
+    "m1_analysis": "Yes, my revised request improved the response because the model no longer assumed that the cup was empty. Instead, it said it would inspect the cup and report what it could observe. It also acknowledged that it might not know whether the cup was empty or full. These actions fit the robot's capabilities because it has wheels and a camera, but no arm to pick up objects. However, the model only described what it would do and did not actually inspect the cup.",
+    "m2_analysis": "I chose the Decide task. Yes, my improved request gave a better answer because I explained that the robot needed to draw a circle on wood. In the original answer, the model chose a measuring tape without knowing the task. After my revised request, it correctly chose a compass. We can see the compass lying in the foreground of the picture, and it is useful for drawing circles. However, the model did not explain what the robot should check before using it, so the answer was still missing some details.",
+    "m3_analysis": "I compared my improved prompt with the first prompt. With the first prompt, the robot made 35 moves and had 15 blocked moves. With my prompt, it only made 6 moves, had 22 blocked moves, and stopped 22 times. Both runs failed to reach the goal. My robot moved up to (1,1) but kept trying to move up or stopping instead of turning right. This shows that even with more detailed directions, the language model can still struggle to follow a route and respond correctly to obstacles.",
+    "final_synthesis": "From these three missions, I learned that giving clear instructions to an AI model is important, but it does not always mean the robot will perform the task correctly.\nIn Mission 1, the model initially assumed the cup was empty without actually inspecting it. After I improved my request, the model explained that it would use its camera to inspect the cup and say if it was unsure. This showed me that more specific instructions can help reduce incorrect assumptions.\nIn Mission 2, the model first suggested using a measuring tape without knowing what the robot needed to do. When I explained that the goal was to draw a circle on wood, the model correctly suggested a compass, which was visible in the picture. This showed how providing the task and using visual information can improve the answer.\nIn Mission 3, even with detailed instructions, the robot failed to reach the target. With my improved prompt, it made only 6 successful moves, had 22 blocked moves, and stopped 22 times. The simulator prevented it from moving through walls, but the model still kept choosing incorrect actions. Overall, I learned that AI models can understand instructions and suggest useful actions, but they still have limitations. Clear prompts, visual evidence, and action checks are all important, but the model also needs to make better decisions when its first plan does not work.",
+    "final.course_reflection": "This lab helped me understand how AI models can be used in robotics and how challenging it can be to turn their answers into actual robot actions. I found it interesting that changing the wording of a request could improve the model's response, especially in the first two missions.\nThe part that stood out to me the most was Mission 3 because even when I gave the robot detailed directions, it still could not reach the goal. I expected the improved instructions to work better, but the robot kept trying blocked moves or stopping. This showed me that understanding a task and actually completing it are two different things. As a computer science student, I think this activity made me more interested in how AI and robotics work together. I also realized how important it is to test AI systems instead of just trusting their answers. If robots are going to be used around people, they need to make reliable decisions and avoid unsafe actions.\nOverall, I enjoyed seeing how the models responded to different instructions, and I would like to learn more about improving their performance in real-world situations."
+  },
+  "student": {
+    "name": "Alireza Aghayari",
+    "email": "alireza.aghayari77@login.cuny.edu"
+  },
+  "tutorial_step": 5,
+  "tutorial_reviewed": 6,
+  "controls": {
+    "control_ground_instruction": "Point to the cup",
+    "control_demo_step": 3,
+    "control_adapt_choice": "Full fine-tuning",
+    "control_adapt_instruction": "Move the blue cup to the tray",
+    "control_adapt_scenario": "Grasps fail from a new camera angle",
+    "control_adapt_records": 2,
+    "control_chunk_hz": 10,
+    "control_movement_angle": 90,
+    "control_movement_token": 122,
+    "control_chunk_size": 4,
+    "control_validate_case": "Use an old cup observation",
+    "control_validate_age_navigate": 0.1,
+    "control_validate_conf_navigate": 0.9,
+    "control_validate_age_stale": 8.9,
+    "control_validate_conf_stale": 0.9,
+    "control_live_language_active": "8171323149e4440795d8b1ade4cb1ad3",
+    "control_live_language_runs": [
+      "78678a4dfe3542d29884a910930bd550",
+      "e80b120cf7fc4e71870646da08f37d65",
+      "7d597d339982434eb02ba297badbe6fb",
+      "8171323149e4440795d8b1ade4cb1ad3"
+    ],
+    "control_live_language_custom_prompt": "Go to the shelf and inspect the cup using your camera. Report what you can observe, and if you cannot tell whether it is empty or full, say you are unsure. Do not move the cup",
+    "control_live_vision_runs": [
+      "60aa5eb421d042d4b2f2c953bb521784",
+      "889ec2787e504d9aaa901ef0a2191caf",
+      "14347b0253ec4225bcfb42412ce0b6be",
+      "f5c3ae08399040279ca090e6d7147201",
+      "4d280dfb123e4ac998f9b571d49f9886"
+    ],
+    "control_live_vision_active": "4d280dfb123e4ac998f9b571d49f9886",
+    "control_live_vision_custom_prompt": "The robot needs to draw a circle on a flat wooden surface. Based on the objects visible in the image, which tool would be most useful for this task? Explain what you see that supports your choice, and mention anything the robot should check before using the tool. If you are unsure say so.",
+    "control_robot_runs": [
+      "41ce420a83db44e88afba01a7a2e4845",
+      "916302e23b5a4b5687225c33e14504bc",
+      "f143b7a2d3284f1bbef53d5055b6baa3",
+      "188fb7d636a74ecbbf2a03c5e8bc31cc"
+    ],
+    "control_robot_active": "188fb7d636a74ecbbf2a03c5e8bc31cc",
+    "control_robot_custom_prompt": "Reach the blue target at (11,1). From the starting position (1,7), move UP until row 1. \nThen move RIGHT until column 7. Move DOWN until row 7 to pass below the wall at column 8. Next, move RIGHT until column 11, then move UP until row 1. Use your current coordinates to decide which direction to take at each step. Avoid walls and do not repeat blocked moves. Only choose STOP when you reach (11,1)."
+  },
+  "guided_version": 4,
+  "guided_seen": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "response_widgets": [
+    "m1_analysis",
+    "m2_analysis",
+    "m3_analysis",
+    "final_synthesis"
+  ],
+  "version": 2
+}

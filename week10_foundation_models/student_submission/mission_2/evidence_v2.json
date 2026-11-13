@@ -1,0 +1,195 @@
+{
+  "version": 2,
+  "run_id": "b982720095094f819249b32014755407",
+  "mission": "mission_2",
+  "saved_at": "2026-11-13T22:16:55.445252+00:00",
+  "settings": {
+    "experiment": "local-live-v2",
+    "model": {
+      "id": "HuggingFaceTB/SmolVLM-500M-Instruct",
+      "revision": "a7da5b986cb59b408707209984f360a5f4ad7e47"
+    }
+  },
+  "rows": [
+    {
+      "job_id": "60aa5eb421d042d4b2f2c953bb521784",
+      "kind": "vision",
+      "case": "identify",
+      "prompt": "What tool is lying in the foreground of this workbench?",
+      "phase": "baseline",
+      "parent_id": null,
+      "requested_at": "2026-11-13T22:14:41.631701+00:00",
+      "comparison_ids": [],
+      "output": "Tape measure.",
+      "model": "HuggingFaceTB/SmolVLM-500M-Instruct",
+      "model_revision": "a7da5b986cb59b408707209984f360a5f4ad7e47",
+      "system_prompt": "",
+      "model_input": "What tool is lying in the foreground of this workbench?",
+      "image_sha256": "0c0e4365ce25ec9f22daf3bd4d95883bddd9782289ec17fdb7d2b7c4e8b280ff",
+      "image_preprocessing": {
+        "longest_edge": 512,
+        "image_splitting": false
+      },
+      "generated_tokens": 4,
+      "max_new_tokens": 80,
+      "generation_seconds": 5.464,
+      "truncated": false,
+      "decoding": "greedy",
+      "device": "cpu",
+      "live_inference": true,
+      "library_versions": {
+        "torch": "2.8.0+cpu",
+        "transformers": "4.57.1"
+      },
+      "output_constraint": null,
+      "completed_at": "2026-11-13T22:14:47.273917+00:00"
+    },
+    {
+      "job_id": "889ec2787e504d9aaa901ef0a2191caf",
+      "kind": "vision",
+      "case": "spatial",
+      "prompt": "Where is the black vertical metal post relative to the tool in the foreground?",
+      "phase": "baseline",
+      "parent_id": null,
+      "requested_at": "2026-11-13T22:14:49.099536+00:00",
+      "comparison_ids": [],
+      "output": "The black vertical metal post is to the right of the tool in the foreground.",
+      "model": "HuggingFaceTB/SmolVLM-500M-Instruct",
+      "model_revision": "a7da5b986cb59b408707209984f360a5f4ad7e47",
+      "system_prompt": "",
+      "model_input": "Where is the black vertical metal post relative to the tool in the foreground?",
+      "image_sha256": "0c0e4365ce25ec9f22daf3bd4d95883bddd9782289ec17fdb7d2b7c4e8b280ff",
+      "image_preprocessing": {
+        "longest_edge": 512,
+        "image_splitting": false
+      },
+      "generated_tokens": 17,
+      "max_new_tokens": 80,
+      "generation_seconds": 7.196,
+      "truncated": false,
+      "decoding": "greedy",
+      "device": "cpu",
+      "live_inference": true,
+      "library_versions": {
+        "torch": "2.8.0+cpu",
+        "transformers": "4.57.1"
+      },
+      "output_constraint": null,
+      "completed_at": "2026-11-13T22:14:56.305051+00:00"
+    },
+    {
+      "job_id": "14347b0253ec4225bcfb42412ce0b6be",
+      "kind": "vision",
+      "case": "purpose",
+      "prompt": "A robot needs the correct tool for its task. Which object in this image should it pick up?",
+      "phase": "baseline",
+      "parent_id": null,
+      "requested_at": "2026-11-13T22:14:58.574105+00:00",
+      "comparison_ids": [],
+      "output": "The robot needs the correct tool for its task. The correct tool is a measuring tape.",
+      "model": "HuggingFaceTB/SmolVLM-500M-Instruct",
+      "model_revision": "a7da5b986cb59b408707209984f360a5f4ad7e47",
+      "system_prompt": "",
+      "model_input": "A robot needs the correct tool for its task. Which object in this image should it pick up?",
+      "image_sha256": "0c0e4365ce25ec9f22daf3bd4d95883bddd9782289ec17fdb7d2b7c4e8b280ff",
+      "image_preprocessing": {
+        "longest_edge": 512,
+        "image_splitting": false
+      },
+      "generated_tokens": 19,
+      "max_new_tokens": 80,
+      "generation_seconds": 7.179,
+      "truncated": false,
+      "decoding": "greedy",
+      "device": "cpu",
+      "live_inference": true,
+      "library_versions": {
+        "torch": "2.8.0+cpu",
+        "transformers": "4.57.1"
+      },
+      "output_constraint": null,
+      "completed_at": "2026-11-13T22:15:05.929633+00:00"
+    },
+    {
+      "job_id": "f5c3ae08399040279ca090e6d7147201",
+      "kind": "vision",
+      "case": "custom",
+      "prompt": "The robot needs to draw a circle on a flat wooden surface. Based on the objects visible in the image, which tool would be most useful for this task? Explain what you see that supports your choice, and mention anything the robot should check before using the tool. If you are unsure say so.",
+      "phase": "custom",
+      "parent_id": null,
+      "requested_at": "2026-11-13T22:15:56.112763+00:00",
+      "comparison_ids": [
+        "60aa5eb421d042d4b2f2c953bb521784",
+        "889ec2787e504d9aaa901ef0a2191caf",
+        "14347b0253ec4225bcfb42412ce0b6be"
+      ],
+      "output": "The most useful tool for drawing a circle on a flat wooden surface would be a compass. This is because a compass can draw a perfect circle without any deviation.",
+      "model": "HuggingFaceTB/SmolVLM-500M-Instruct",
+      "model_revision": "a7da5b986cb59b408707209984f360a5f4ad7e47",
+      "system_prompt": "",
+      "model_input": "The robot needs to draw a circle on a flat wooden surface. Based on the objects visible in the image, which tool would be most useful for this task? Explain what you see that supports your choice, and mention anything the robot should check before using the tool. If you are unsure say so.",
+      "image_sha256": "0c0e4365ce25ec9f22daf3bd4d95883bddd9782289ec17fdb7d2b7c4e8b280ff",
+      "image_preprocessing": {
+        "longest_edge": 512,
+        "image_splitting": false
+      },
+      "generated_tokens": 33,
+      "max_new_tokens": 80,
+      "generation_seconds": 9.31,
+      "truncated": false,
+      "decoding": "greedy",
+      "device": "cpu",
+      "live_inference": true,
+      "library_versions": {
+        "torch": "2.8.0+cpu",
+        "transformers": "4.57.1"
+      },
+      "output_constraint": null,
+      "completed_at": "2026-11-13T22:16:05.541338+00:00"
+    },
+    {
+      "job_id": "4d280dfb123e4ac998f9b571d49f9886",
+      "kind": "vision",
+      "case": "custom",
+      "prompt": "The robot needs to draw a circle on a flat wooden surface. Based on the objects visible in the image, which tool would be most useful for this task? Explain what you see that supports your choice, and mention anything the robot should check before using the tool. If you are unsure say so.",
+      "phase": "custom",
+      "parent_id": null,
+      "requested_at": "2026-11-13T22:16:11.305330+00:00",
+      "comparison_ids": [
+        "60aa5eb421d042d4b2f2c953bb521784",
+        "889ec2787e504d9aaa901ef0a2191caf",
+        "14347b0253ec4225bcfb42412ce0b6be"
+      ],
+      "output": "The most useful tool for drawing a circle on a flat wooden surface would be a compass. This is because a compass can draw a perfect circle without any deviation.",
+      "model": "HuggingFaceTB/SmolVLM-500M-Instruct",
+      "model_revision": "a7da5b986cb59b408707209984f360a5f4ad7e47",
+      "system_prompt": "",
+      "model_input": "The robot needs to draw a circle on a flat wooden surface. Based on the objects visible in the image, which tool would be most useful for this task? Explain what you see that supports your choice, and mention anything the robot should check before using the tool. If you are unsure say so.",
+      "image_sha256": "0c0e4365ce25ec9f22daf3bd4d95883bddd9782289ec17fdb7d2b7c4e8b280ff",
+      "image_preprocessing": {
+        "longest_edge": 512,
+        "image_splitting": false
+      },
+      "generated_tokens": 33,
+      "max_new_tokens": 80,
+      "generation_seconds": 10.357,
+      "truncated": false,
+      "decoding": "greedy",
+      "device": "cpu",
+      "live_inference": true,
+      "library_versions": {
+        "torch": "2.8.0+cpu",
+        "transformers": "4.57.1"
+      },
+      "output_constraint": null,
+      "completed_at": "2026-11-13T22:16:21.831393+00:00"
+    }
+  ],
+  "responses": {
+    "analysis": "I chose the Decide task. Yes, my improved request gave a better answer because I explained that the robot needed to draw a circle on wood. In the original answer, the model chose a measuring tape without knowing the task. After my revised request, it correctly chose a compass. We can see the compass lying in the foreground of the picture, and it is useful for drawing circles. However, the model did not explain what the robot should check before using it, so the answer was still missing some details."
+  },
+  "extra": {
+    "draft_signature": "bb02f4d711e205ea3f341644844356c7b9960127b6c0fceee41f03b84862c535",
+    "upstream_run": "8f4619c0d1114027a2c0ccc01f51fba4"
+  }
+}

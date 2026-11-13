@@ -1,0 +1,29 @@
+{
+  "job_id": "188fb7d636a74ecbbf2a03c5e8bc31cc",
+  "kind": "language",
+  "case": "custom",
+  "prompt": "Reach the blue target at (11,1). From the starting position (1,7), move UP until row 1. \nThen move RIGHT until column 7. Move DOWN until row 7 to pass below the wall at column 8. Next, move RIGHT until column 11, then move UP until row 1. Use your current coordinates to decide which direction to take at each step. Avoid walls and do not repeat blocked moves. Only choose STOP when you reach (11,1).",
+  "phase": "custom",
+  "parent_id": null,
+  "requested_at": "2026-11-13T22:37:53.668464+00:00",
+  "comparison_ids": [
+    "41ce420a83db44e88afba01a7a2e4845",
+    "916302e23b5a4b5687225c33e14504bc",
+    "f143b7a2d3284f1bbef53d5055b6baa3"
+  ],
+  "task": "robot",
+  "robot_state": {
+    "position": [
+      1,
+      7
+    ],
+    "step": 0,
+    "history": [],
+    "finished": false,
+    "goal_reached": false,
+    "first_goal_step": null,
+    "last_feedback": "No previous action.",
+    "last_decision": null
+  },
+  "simulator_contract": "8da30a943bd97ee39237aa05e8e6800fecdecbef3ce692d7d4e48f851679060f"
+}

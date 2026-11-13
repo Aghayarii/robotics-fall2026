@@ -1,0 +1,10 @@
+{
+  "job_id": "e80b120cf7fc4e71870646da08f37d65",
+  "kind": "language",
+  "case": "ambiguous",
+  "prompt": "Go over there and inspect it.",
+  "phase": "baseline",
+  "parent_id": null,
+  "requested_at": "2026-11-13T22:12:20.803021+00:00",
+  "comparison_ids": []
+}
